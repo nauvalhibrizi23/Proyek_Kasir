@@ -1,45 +1,41 @@
 import 'dart:io';
 
-void main(){
-Map<String, int> menu_makanan = {
-  'Nasi Goreng'  : 15000,
-  'Kwitaw Goreng': 20000,
-  'Mie Goreng'   : 12000,
-};
+void main() {
+  Map<String, int> menu_makanan = {
+    'nasi goreng': 15000,
+    'kwitaw goreng': 20000,
+    'mie goreng': 12000,
+  };
 
-print('-------- Daftar Menu Makanan -------');
-menu_makanan.forEach((key, value) {
-  print("$key : Rp$value");
-});
+  print('-------- Daftar Menu Makanan -------');
+  menu_makanan.forEach((key, value) {
+    print("$key : Rp$value");
+  });
 
-//Inputan_Makanan
-stdout.write("Masukkan Nama Menu Makanan : ");
-String? namamenu = stdin.readLineSync() ?? "";
+  stdout.write("Masukkan Nama Menu Makanan : ");
+  String namamenu = (stdin.readLineSync() ?? "").toLowerCase().trim();
 
-//Inputan_Jumlah
-stdout.write("Masukkan Jumlah Pesanan : ");
-int jumlahpesanan = int.parse (stdin.readLineSync() ?? "0");
+  stdout.write("Masukkan Jumlah Pesanan : ");
+  int jumlahpesanan = int.tryParse(stdin.readLineSync() ?? "0") ?? 0;
 
-if(!menu_makanan.containsKey(namamenu)) {
-  print("Menu Tidak Tersedia");
-  return;
-}
+  if (!menu_makanan.containsKey(namamenu)) {
+    print("Menu Tidak Tersedia");
+    return;
+  }
 
-int harga = menu_makanan[namamenu]!;
+  int harga = menu_makanan[namamenu]!;
 
-// hitung total
-int subtotal = harga * jumlahpesanan;
-double ppn   = subtotal * 0.11;
-double total = subtotal + ppn;
+  int subtotal = harga * jumlahpesanan;
+  double ppn = subtotal * 0.11;
+  double total = subtotal + ppn;
 
-// diskon 
-double diskon = 0;
-if (subtotal  >= 100000) {
-    diskon    = 10000;
-    total     -= diskon;
-}
+  // Diskon
+  double diskon = 0;
+  if (subtotal >= 100000) {
+    diskon = 10000;
+    total -= diskon;
+  }
 
-  // Struk Pembayaran
   print("======= Struk Pembayaran =========");
   print("Nama Menu      : $namamenu");
   print("Jumlah Pesanan : $jumlahpesanan");
@@ -47,6 +43,6 @@ if (subtotal  >= 100000) {
   print("Subtotal       : Rp$subtotal");
   print("PPN (11%)      : Rp${ppn.toStringAsFixed(0)}");
   print("Diskon         : Rp${diskon.toStringAsFixed(0)}");
-  print("======= Terima Kasih Sudah Berbelanja ======= ");
+  print("======= Terima Kasih Sudah Berbelanja =======");
   print("Total Bayar    : Rp${total.toStringAsFixed(0)}");
 }
