@@ -34,9 +34,9 @@ double total = subtotal + ppn;
 
 // diskon 
 double diskon = 0;
-if (total  >= 100000) {
-    diskon    =10000;
-    total     -diskon;
+if (subtotal  >= 100000) {
+    diskon    = 10000;
+    total     -= diskon;
 }
 
   // Struk Pembayaran
