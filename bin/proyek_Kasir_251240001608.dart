@@ -41,7 +41,7 @@ if (total  >= 100000) {
 
   // Struk Pembayaran
   print("======= Struk Pembayaran =========");
-  print("Nama Menu      : $menu_makanan");
+  print("Nama Menu      : $namamenu");
   print("Jumlah Pesanan : $jumlahpesanan");
   print("Harga Satuan   : Rp$harga");
   print("Subtotal       : Rp$subtotal");
